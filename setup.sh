@@ -1,12 +1,16 @@
 #!/bin/bash
-set -e  # Exit on error
 
-echo "Installing dependencies..."
+# Update package list and install required packages
+sudo apt-get update -y
+sudo apt-get install python3-venv python3-pip -y
 
-# Install ffmpeg and Python
-apt-get update && apt-get install -y ffmpeg python3 python3-pip
+# Create a virtual environment
+python3 -m venv /home/render/venv
 
-# Install yt-dlp
-pip3 install -U yt-dlp
+# Activate the virtual environment
+source /home/render/venv/bin/activate
 
-echo "Setup complete!"
+# Install Python dependencies inside the virtual environment
+pip install -r requirements.txt
+
+# Additional setup tasks can go here
