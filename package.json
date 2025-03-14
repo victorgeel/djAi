@@ -1,0 +1,16 @@
+{
+  "name": "telegram-ai-music-bot",
+  "version": "1.0.0",
+  "description": "Telegram AI-powered music streaming bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "axios": "^0.26.0",
+    "node-telegram-bot-api": "^0.56.0",
+    "googleapis": "^105.0.0",
+    "yt-dlp": "^2021.12.1",
+    "express": "^4.17.3"
+  }
+}
