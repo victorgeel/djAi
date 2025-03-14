@@ -1,13 +1,14 @@
 const axios = require("axios");
 const { google } = require("googleapis");
 
-const geminiApiKey = process.env.GEMINI_API_KEY;
-const youtubeApiKey = process.env.YOUTUBE_API_KEY;
+// Directly inputting the API keys
+const GEMINI_API_KEY = "AIzaSyDYbvvN4IUCIclgGT7AWDbBDWR75RvQGTg";
+const YOUTUBE_API_KEY = "AIzaSyDYbvvN4IUCIclgGT7AWDbBDWR75RvQGTg";
 
 async function getSuggestedSong(query) {
   try {
     const response = await axios.post(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`,
       { contents: [{ parts: [{ text: `Suggest a song for: ${query}` }] }] }
     );
 
@@ -20,7 +21,7 @@ async function getSuggestedSong(query) {
 
 async function searchYouTube(query) {
   try {
-    const youtube = google.youtube({ version: "v3", auth: youtubeApiKey });
+    const youtube = google.youtube({ version: "v3", auth: YOUTUBE_API_KEY });
     const response = await youtube.search.list({
       part: "snippet",
       q: query,
