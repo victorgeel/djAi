@@ -1,16 +1,10 @@
 #!/bin/bash
 
-# Update package list and install required packages
-sudo apt-get update -y
-sudo apt-get install python3-venv python3-pip -y
+# Update package list and install required packages (without sudo)
+apt-get update -y
+apt-get install python3-pip python3 -y  # Installing pip and Python 3 without sudo
 
-# Create a virtual environment
-python3 -m venv /home/render/venv
-
-# Activate the virtual environment
-source /home/render/venv/bin/activate
-
-# Install Python dependencies inside the virtual environment
-pip install -r requirements.txt
+# Install Python dependencies globally (without sudo)
+pip3 install --user -r requirements.txt  # Install the required packages in user space
 
 # Additional setup tasks can go here
