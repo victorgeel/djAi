@@ -1,11 +1,14 @@
-require("dotenv").config();
 const axios = require("axios");
 const { exec } = require("child_process");
 const { Bot } = require("node-telegram-bot-api");
 
-const bot = new Bot(process.env.TELEGRAM_BOT_TOKEN, { polling: true });
-const groupChatId = process.env.GROUP_CHAT_ID;
-const geminiApiKey = process.env.GEMINI_API_KEY;
+// Directly inputting the API keys and bot settings
+const TELEGRAM_BOT_TOKEN = "7857088775:AAHUSXIamPGmA1JKMGk-bD5aO56fN15N33M";
+const GEMINI_API_KEY = "AIzaSyDYbvvN4IUCIclgGT7AWDbBDWR75RvQGTg";
+const YOUTUBE_API_KEY = "AIzaSyDYbvvN4IUCIclgGT7AWDbBDWR75RvQGTg";
+const GROUP_CHAT_ID = "-1001226903009";
+
+const bot = new Bot(TELEGRAM_BOT_TOKEN, { polling: true });
 const youtube = require("./youtube");
 const player = require("./player");
 
@@ -13,7 +16,7 @@ let lastRequestTime = Date.now();
 let idleTimeout;
 
 bot.on("message", async (msg) => {
-  if (!msg.text || msg.chat.id !== parseInt(groupChatId)) return;
+  if (!msg.text || msg.chat.id !== parseInt(GROUP_CHAT_ID)) return;
 
   const chatId = msg.chat.id;
   const messageText = msg.text.toLowerCase();
@@ -57,12 +60,12 @@ bot.on("message", async (msg) => {
 
 bot.on("callback_query", async (query) => {
   const url = query.data;
-  bot.sendMessage(groupChatId, `🎶 Playing: ${url}`);
+  bot.sendMessage(GROUP_CHAT_ID, `🎶 Playing: ${url}`);
   player.play(url);
   bot.answerCallbackQuery(query.id);
 
   idleTimeout = setTimeout(() => {
-    bot.sendMessage(groupChatId, "Leaving voice chat due to inactivity.");
+    bot.sendMessage(GROUP_CHAT_ID, "Leaving voice chat due to inactivity.");
     player.stop();
   }, 180000);
 });
