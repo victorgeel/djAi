@@ -1,9 +1,0 @@
-const express = require("express");
-const bot = require("./bot");
-
-const app = express();
-const PORT = 3000; // Directly setting the port value
-
-app.get("/", (req, res) => res.send("Bot is running!"));
-
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
