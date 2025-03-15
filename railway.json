@@ -1,0 +1,12 @@
+{
+  "services": [
+    {
+      "name": "backend",
+      "dockerfile": "backend/Dockerfile"
+    },
+    {
+      "name": "bot",
+      "dockerfile": "bot/Dockerfile"
+    }
+  ]
+}
